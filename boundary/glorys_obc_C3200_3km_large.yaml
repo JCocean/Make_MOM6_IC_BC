@@ -1,0 +1,26 @@
+# author: 'Jing Chen'
+# description: 'Boundary conditions for MOM6, generated from GLORYS PHY fields'
+# created: '2025-08-05'
+first_year: 2003
+last_year: 2003
+glorys_dir: '/work/Jing.Chen/Glorys_ic_bc/Glorys_merged_PHY'
+output_dir: '/work/Jing.Chen/Glorys_ic_bc/BC_nc_file/C3200_3km_large/'
+hgrid: '/work/Jing.Chen/Glorys_ic_bc/grid/C3200_3km_large_new/ocean_hgrid.nc'
+ncrcat_years: true  # Set to false if you want to skip ncrcat_years
+ncrcat_names:
+  - 'thetao'
+  - 'so'
+  - 'zos'
+  - 'uv'
+segments:
+  - id: 1
+    border: 'south'
+  - id: 2
+    border: 'north'
+  - id: 3
+    border: 'east'
+variables:
+  - 'thetao'
+  - 'so'
+  - 'zos'
+  - 'uv'
