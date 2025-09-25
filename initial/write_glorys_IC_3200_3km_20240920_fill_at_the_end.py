@@ -3,7 +3,7 @@
 script for preparing model IC (ssh,T,S,u,v) from Glorys data
 How to use
 ./write_glorys_initial.py --config_file glorys_ic.yaml
-./write_glorys_IC_384_25km_20240926_fill_at_the_end.py  --config_file glorys_ic_20240926_384_25km_fill_at_the_end.yaml
+./write_glorys_IC_3200_3km_20240920_fill_at_the_end.py  --config_file  glorys_ic_20240920_3200_3km_fill_at_the_end.yaml
 """
 
 # author: 'Jing Chen'
@@ -337,7 +337,7 @@ def write_initial(config):
     print("\nChunks for 'temp':")
     print(interped['temp'].chunks)
 
-    input("\nPress Enter to continue...")
+    #input("\nPress Enter to continue...")
     
 
     print("\n--- SHAPES BEFORE DEEP FILL ---")
@@ -378,7 +378,7 @@ def write_initial(config):
 
 
 # === Pause ===
-    input("Press Enter to continue...")
+    #input("Press Enter to continue...")
 
 
 
@@ -390,7 +390,7 @@ def write_initial(config):
 
 
     # === Pause ===
-    input("\nDeep-ocean filling completed. Press Enter to continue...")
+    #input("\nDeep-ocean filling completed. Press Enter to continue...")
 
 
 
@@ -414,7 +414,7 @@ def write_initial(config):
 
     print("Variables in final dataset:", list(interped.data_vars))
     print("SSH stats:", interped["ssh"].min().values, interped["ssh"].max().values)
-    input("Press Enter to continue...")  # Pauses execution
+    #input("Press Enter to continue...")  # Pauses execution
 
 
     # output results
