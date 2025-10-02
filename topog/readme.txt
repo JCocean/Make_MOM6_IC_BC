@@ -1,0 +1,2 @@
+To remove isolated water bodies using ice9.py, here’s an example command (run in the analysis directory):
+python3 ice9.py topog.nc --iseed 282 --jseed 308 --shallow 1.0 --output iced_topog.nc --analyze
