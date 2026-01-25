@@ -160,26 +160,23 @@ def applyIce9(fileName, nFileName, variable, i0, j0, shallow, analyze):
     print( '# of wet deep points after Ice 9 = %i'%(numNewDeep))
     print( '%i - %i = %i fewer points left'%(numNewWet,numNewDeep,numNewWet-numNewDeep))
   
-
-def ice9it(i,j,depth):
-  # Iterative implementation of "ice 9"
-  wetMask = 0*depth
-  (nj,ni) = wetMask.shape
-  stack = set()
-  stack.add( (j,i) )
-  while stack:
-    (j,i) = stack.pop()
-    if wetMask[j,i] or depth[j,i] >= 0: continue
-    wetMask[j,i] = 1
-    if i>0: stack.add( (j,i-1) )
-    else: stack.add( (j,ni-1) )
-    if i<ni-1: stack.add( (j,i+1) )
-    else: stack.add( (0,j) )
-    if j>0: stack.add( (j-1,i) )
-    if j<nj-1: stack.add( (j+1,i) )
-    else: stack.add( (j,ni-1-i) )
-  return wetMask
-
+def ice9it(i, j, depth):
+    nj, ni = depth.shape
+    wet = np.zeros_like(depth, dtype=np.int8)
+    stack = [(j, i)]
+    while stack:
+        j, i = stack.pop()
+        i %= ni                # 经度周期
+        if j < 0 or j >= nj: 
+            continue           # 纬度越界跳过
+        if wet[j, i] or depth[j, i] >= 0:
+            continue
+        wet[j, i] = 1
+        stack.append((j, i-1))
+        stack.append((j, i+1))
+        stack.append((j-1, i))
+        stack.append((j+1, i))
+    return wet
 # Invoke main()
 if __name__ == '__main__': main()
 
